@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ============================================================
+       EDIT PAGE TITLE: Replace "YOUR_NAME" with your actual name
+       ============================================================ -->
+  <title>Sujalraje Mohan Bhosale — Portfolio</title>
+
+  <!-- Google Fonts: Playfair Display (display) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       PHOTO UPLOAD SCRIPT
+       Minimal JS — only used to preview the uploaded photo.
+       When you upload a photo, it instantly appears in the circle.
+       To make the photo permanent: save it as e.g. "photo.jpg" in
+       the same folder and replace the placeholder div with:
+       <img src="photo.jpg" alt="YOUR_NAME" class="profile-img" />
+       ============================================================ -->
+  <script>
+    function handlePhotoUpload(input) {
+      const file = input.files[0];
+      if (!file || !file.type.startsWith('image/')) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const wrap = document.getElementById('profile-img-wrap');
+        // Remove old placeholder / previous image
+        const old = wrap.querySelector('.profile-img-placeholder, .profile-img-preview');
+        if (old) old.remove();
+
+        // Create and insert the preview image
+        const img = document.createElement('img');
+        img.src = e.target.result;
+        img.className = 'profile-img-preview';
+        img.alt = 'Profile photo';
+        wrap.insertBefore(img, wrap.firstChild);
+
+        // Show success hint
+        const hint = document.getElementById('upload-hint');
+        if (hint) hint.textContent = '✓ Photo uploaded! (temporary — see instructions above to make it permanent)';
+      };
+      reader.readAsDataURL(file);
+    }
+  </script>
+
+  <!-- ============================================================
+       NAVIGATION BAR — fixed at the top of the page
+       Edit the nav logo (YOUR_NAME initials) below
+       ============================================================ -->
+  <header class="navbar">
+    <div class="nav-container">
+      <!-- EDIT: Change "YN" to your initials -->
+      <a href="#about" class="nav-logo">YN</a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+      <label for="nav-toggle" class="nav-hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <nav class="nav-menu">
+        <a href="#about"        class="nav-link">About</a>
+        <a href="#skills"       class="nav-link">Skills</a>
+        <a href="#certificates" class="nav-link">Certificates</a>
+        <a href="#projects"     class="nav-link">Projects</a>
+        <a href="#contact"      class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- ============================================================
+       ABOUT SECTION
+       Edit: YOUR_NAME, YOUR_EDUCATION, YOUR_ABOUT_TEXT
+       Profile image: replace the placeholder SVG with an <img> tag
+       ============================================================ -->
+  <section id="about" class="section about-section">
+    <div class="container about-grid">
+
+      <!-- ============================================================
+           PROFILE PHOTO UPLOAD ZONE
+           • Click the circle (or the button below) to upload a photo
+           • The preview appears instantly in the circle
+           • EDIT: Change "YN" to your initials (shown before upload)
+           • To make permanent: save photo as photo.jpg in this folder
+             and replace this whole block with:
+             <div class="profile-img-wrap" id="profile-img-wrap">
+               <img src="photo.jpg" alt="YOUR_NAME" class="profile-img-preview" />
+               <div class="profile-img-ring"></div>
+             </div>
+           ============================================================ -->
+      <div class="profile-img-wrap" id="profile-img-wrap">
+
+        <!-- Initials placeholder — hidden once photo is uploaded -->
+        <div class="profile-img-placeholder">
+          <!-- EDIT: Change "YN" to your initials -->
+          <span>YN</span>
+        </div>
+
+        <!-- Invisible file input overlaid on the circle for click-to-upload -->
+        <input
+          type="file"
+          id="photo-upload-input"
+          class="photo-upload-input"
+          accept="image/*"
+          onchange="handlePhotoUpload(this)"
+          title="Click to upload your photo"
+        />
+
+        <!-- Hover overlay shown on mouseover -->
+        <label for="photo-upload-input" class="photo-upload-overlay" aria-label="Upload photo">
+          <span class="upload-overlay-icon">📷</span>
+          <span class="upload-overlay-text">Upload Photo</span>
+        </label>
+
+        <div class="profile-img-ring"></div>
+      </div>
+
+      <!-- Upload button below the circle (alternative trigger) -->
+      <div class="photo-upload-actions">
+        <label for="photo-upload-input" class="btn btn-upload">
+          &#128247; Choose Photo
+        </label>
+        <!-- Status hint — updates after upload -->
+        <p id="upload-hint" class="upload-hint">Click the circle or button to upload your photo</p>
+      </div>
+
+      <div class="about-text">
+        <p class="about-eyebrow">Hello, I'm</p>
+
+        <!-- EDIT: Replace YOUR_NAME -->
+        <h1 class="about-name">Sujalraje Mohan Bhosale</h1>
+
+        <!-- EDIT: Replace YOUR_EDUCATION -->
+        <p class="about-edu">FY Btech CSE(ai/ml)</p>
+
+        <!-- EDIT: Replace YOUR_ABOUT_TEXT with your introduction -->
+        <p class="about-bio">
+          I am a First Year B.Tech (FYBTech) student in Computer Science Engineering with a specialization in Artificial Intelligence and Machine Learning. 
+          I enjoy coding and have a strong curiosity for exploring new technologies and ideas. 
+          I am always eager to learn, build new projects, and continuously improve my skills as a developer.
+        </p>
+
+        <div class="about-cta">
+          <a href="#projects" class="btn btn-primary">See My Work</a>
+          <a href="#contact"  class="btn btn-outline">Get In Touch</a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Decorative background elements -->
+    <div class="about-bg-circle c1"></div>
+    <div class="about-bg-circle c2"></div>
+  </section>
+
+
+  <!-- ============================================================
+       SKILLS SECTION
+       Edit: Add, remove, or rename skill cards below
+       Each card has a skill name and a visual level bar
+       ============================================================ -->
+  <section id="skills" class="section skills-section">
+    <div class="container">
+
+      <div class="section-header">
+        <h2 class="section-title">Skills</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="skills-grid">
+
+        <!-- EDIT: Skill cards — duplicate a <div class="skill-card"> block to add more -->
+        <!-- Change skill name and adjust --level CSS custom property (0%–100%) -->
+
+        <div class="skill-card">
+          <div class="skill-icon">&#128187;</div>
+          <!-- EDIT: Skill name -->
+          <h3 class="skill-name">HTML &amp; CSS</h3>
+          <!-- EDIT: Change --level value (e.g. 90% means 90% proficiency bar) -->
+          <div class="skill-bar"><div class="skill-fill" style="--level: 90%"></div></div>
+          <span class="skill-pct">90%</span>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">&#9889;</div>
+          <h3 class="skill-name">SQL</h3>
+          <div class="skill-bar"><div class="skill-fill" style="--level: 75%"></div></div>
+          <span class="skill-pct">75%</span>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">&#128640;</div>
+          <h3 class="skill-name">Python</h3>
+          <div class="skill-bar"><div class="skill-fill" style="--level: 80%"></div></div>
+          <span class="skill-pct">80%</span>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">&#127757;</div>
+          <h3 class="skill-name">Power BI</h3>
+          <div class="skill-bar"><div class="skill-fill" style="--level: 65%"></div></div>
+          <span class="skill-pct">65%</span>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">&#128200;</div>
+          <h3 class="skill-name">C</h3>
+          <div class="skill-bar"><div class="skill-fill" style="--level: 80%"></div></div>
+          <span class="skill-pct">80%</span>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-icon">&#127775;</div>
+          <h3 class="skill-name">Adaptability</h3>
+          <div class="skill-bar"><div class="skill-fill" style="--level: 90%"></div></div>
+          <span class="skill-pct">90%</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       CERTIFICATES SECTION
+       Edit: Duplicate a <div class="cert-card"> block to add more
+       Replace CERTIFICATE_TITLE, CERTIFICATE_ISSUER, CERTIFICATE_LINK
+       ============================================================ -->
+  <section id="certificates" class="section certs-section">
+    <div class="container">
+
+      <div class="section-header">
+        <h2 class="section-title">Certificates</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="cards-grid">
+
+        <!-- CERTIFICATE CARD 1 — copy this block to add more certificates -->
+        <div class="card cert-card">
+          <div class="card-badge">&#127941;</div>
+          <!-- EDIT: Certificate title -->
+          <h3 class="card-title">Cisco Python Certification 1</h3>
+          <!-- EDIT: Issuing organization -->
+          <p class="card-sub">Cisco</p>
+          <div class="card-footer">
+            <!-- EDIT: Replace CERTIFICATE_LINK with the actual URL -->
+            <a href="CERTIFICATE_LINK" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+              View Certificate &#8599;
+            </a>
+          </div>
+        </div>
+
+        <!-- CERTIFICATE CARD 2 -->
+        <div class="card cert-card">
+          <div class="card-badge">&#127941;</div>
+          <h3 class="card-title">Cisco Python Certification 2</h3>
+          <p class="card-sub">Cisco</p>
+          <div class="card-footer">
+            <a href="CERTIFICATE_LINK" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+              View Certificate &#8599;
+            </a>
+          </div>
+        </div>
+
+        <!-- CERTIFICATE CARD 3 -->
+        <div class="card cert-card">
+          <div class="card-badge">&#127941;</div>
+          <h3 class="card-title">CERTIFICATE_TITLE</h3>
+          <p class="card-sub">CERTIFICATE_ISSUER</p>
+          <div class="card-footer">
+            <a href="CERTIFICATE_LINK" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+              View Certificate &#8599;
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       PROJECTS SECTION
+       Edit: Duplicate a <div class="card project-card"> block to add more
+       Replace PROJECT_TITLE, PROJECT_DESCRIPTION, PROJECT_LINK
+       ============================================================ -->
+  <section id="projects" class="section projects-section">
+    <div class="container">
+
+      <div class="section-header">
+        <h2 class="section-title">Projects</h2>
+        <div class="section-rule"></div>
+      </div>
+
+      <div class="cards-grid">
+
+        <!-- PROJECT CARD 1 — copy this block to add more projects -->
+        <div class="card project-card">
+          <div class="project-num">01</div>
+          <!-- EDIT: Project title -->
+          <h3 class="card-title">Posture Pro</h3>
+          <!-- EDIT: Short project description (2–3 sentences) -->
+          <p class="card-desc">Posture Pro is a web-based application developed using design thinking principles to help users improve their posture through personalized guidance.
+            The platform begins by collecting user inputs through a set of questions and analyzes the responses to generate a customized set of exercises tailored to individual needs.
+
+The application also includes a daily tracking system that allows users to monitor their progress consistently.
+Based on this data, it provides a weekly report to help users understand their improvement and stay motivated. This project focuses on solving real-life health issues by combining user-centered design with simple and effective digital solutions
+</p>
+          <div class="card-footer">
+            <!-- EDIT: Replace PROJECT_LINK with the actual URL -->
+            <a href="https://posture-pro-by-qudramind.lovable.app" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+              View Project &#8599;
+            </a>
+          </div>
+        </div>
+
+        <!-- PROJECT CARD 2 -->
+        <div class="card project-card">
+          <div class="project-num">02</div>
+          <h3 class="card-title">Accident Alert System Using IOT</h3>
+          <p class="card-desc">currently working</p>
+          <div class="card-footer">
+            <a href="" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+              View Project &#8599;
+            </a>
+          </div>
+        </div>
+
+        <!-- PROJECT CARD 3 
+        <div class="card project-card">
+          <div class="project-num">03</div>
+          <h3 class="card-title">PROJECT_TITLE</h3>
+          <p class="card-desc">PROJECT_DESCRIPTION</p>
+          <div class="card-footer">
+            <a href="PROJECT_LINK" target="_blank" rel="noopener" class="btn btn-primary btn-sm">
+              View Project &#8599;
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>-->
+  </section>
+
+
+  <!-- ============================================================
+       CONTACT SECTION
+       Edit: YOUR_EMAIL, YOUR_LINKEDIN, YOUR_INSTAGRAM
+       ============================================================ -->
+  <section id="contact" class="section contact-section">
+    <div class="container contact-inner">
+
+      <div class="section-header">
+        <h2 class="section-title light">Let's Connect</h2>
+        <div class="section-rule gold"></div>
+      </div>
+
+      <p class="contact-tagline">
+        Whether it's a project, an opportunity, or just a chat — my inbox is always open.
+      </p>
+
+      <div class="contact-links">
+
+        <!-- EDIT: Replace YOUR_EMAIL -->
+        <a href="mailto:YOUR_EMAIL" class="contact-btn">
+          <span class="contact-icon">&#9993;</span>
+          <span>sujalrajebhosale@gmail.com</span>
+        </a>
+
+        <!-- EDIT: Replace YOUR_LINKEDIN with the full URL
+             e.g. https://linkedin.com/in/yourprofile -->
+        <a href="https://www.linkedin.com/in/sujalraje-bhosale-93218b38a?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener" class="contact-btn">
+          <span class="contact-icon">&#128101;</span>
+          <span>LinkedIn</span>
+        </a>
+
+        <!-- EDIT: Replace YOUR_INSTAGRAM with the full URL
+             e.g. https://instagram.com/yourhandle -->
+        <a href="https://www.instagram.com/sujalraje_bhosale/" target="_blank" rel="noopener" class="contact-btn">
+          <span class="contact-icon">&#128247;</span>
+          <span>Instagram</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+       EDIT: Replace YOUR_NAME in the copyright line
+       ============================================================ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <!-- EDIT: Change YOUR_NAME -->
+      <p class="footer-copy">&copy; 2025 SRB1515. All rights reserved.</p>
+      <a href="#about" class="footer-back">Back to top &#8593;</a>
+    </div>
+  </footer>
+
+</body>
+</html>
